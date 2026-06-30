@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "archiveName": "v3.3.24-git-ready-pre-20260630-1725",
+  "archiveType": "light",
+  "createdAt": "2026-06-30T09:25:28.873Z",
+  "createdBy": "tools/create_archive.js",
+  "files": [
+    "witch-shop-game/START_HERE.md",
+    "witch-shop-game/AI_HANDOFF.md",
+    "witch-shop-game/CHANGELOG.md",
+    "witch-shop-game/docs/STATUS.json",
+    "witch-shop-game/docs/NEXT.md",
+    "tools/README.md"
+  ],
+  "goal": "整理工作区为适合上传 GitHub private repo 的本地 Git 仓库形态。",
+  "verifiedBy": [
+    "node tools/project_check.js"
+  ],
+  "postFlightStatus": "pass",
+  "prevVersion": "v3.3.23",
+  "notes": "本轮新增根目录 README、.gitignore、.gitattributes，并初始化本地 Git；由于未配置 user.name/user.email，尚未创建 commit。"
+}

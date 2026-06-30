@@ -1,0 +1,46 @@
+{
+  "$schema": "./STATUS.schema.json",
+  "schemaVersion": 1,
+  "currentVersion": "v3.3.24",
+  "currentPhase": "v3.0 大版本规划下的 v3.3 故事条件网络、特殊委托与半隐藏预告校准阶段",
+  "lastReleasedVersion": "v3.3.23",
+  "latestArchive": "v3.3.24-git-ready-pre-20260630-1725",
+  "unreleasedHighlights": [
+    "v3.3.24 Git 准备整理：新增根目录 README、.gitignore、.gitattributes，并初始化本地 Git 仓库。",
+    "v3.3.23 多模型协作框架整治：清理根目录历史脚本、引入 STATUS.json 单一真相、归档自动触发检查、新增 agent 角色与结构化 backlog 文档。"
+  ],
+  "openTracks": [
+    {
+      "id": "another_side_batch3",
+      "title": "精灵 / 幼龙第三批 another side",
+      "status": "deferred",
+      "blockers": ["礼物标签矩阵未细化", "成长阶段判定未定义"]
+    },
+    {
+      "id": "special_commission_runtime",
+      "title": "特殊委托正式任务系统",
+      "status": "planned",
+      "blockers": ["需先验收 v3.3.19 只读线索卡体验"]
+    },
+    {
+      "id": "gift_triggered_story",
+      "title": "礼物触发故事联动",
+      "status": "candidate"
+    }
+  ],
+  "consistencyAnchors": {
+    "startHere": {
+      "file": "witch-shop-game/START_HERE.md",
+      "versionRegex": "代码与 CHANGELOG 已推进到 (v\\d+\\.\\d+\\.\\d+)"
+    },
+    "handoff": {
+      "file": "witch-shop-game/AI_HANDOFF.md",
+      "versionRegex": "已完成 v3\\.3\\.1～(v\\d+\\.\\d+\\.\\d+)"
+    },
+    "changelog": {
+      "file": "witch-shop-game/CHANGELOG.md",
+      "versionRegex": "##\\s+Unreleased[\\s\\S]*?-\\s+(v\\d+\\.\\d+\\.\\d+)"
+    }
+  },
+  "notes": "本文件是项目当前状态的唯一机读真相。修改时请保持 currentVersion 与三个 consistencyAnchors 中正则提取出的版本号一致，project_check.js 会自动校验。"
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "archiveName": "v3.3.23-collab-framework-pre-20260621-1833",
+  "archiveType": "light",
+  "createdAt": "2026-06-21T18:33:00+08:00",
+  "createdBy": "tools/create_archive.js (manually backfilled to add manifest.json)",
+  "files": [
+    "witch-shop-game/START_HERE.md",
+    "witch-shop-game/AI_HANDOFF.md",
+    "witch-shop-game/CHANGELOG.md",
+    "witch-shop-game/docs/V3_ROADMAP.md",
+    "tools/create_archive.js",
+    "tools/project_check.js",
+    "tools/README.md"
+  ],
+  "goal": "多模型 / agent 协作框架查漏补缺：清理根目录、引入 STATUS.json 单一真相、归档自动 post-flight、MANIFEST 机读化、新增 agent 角色与结构化 backlog 文档、重命名 legacy-tests。",
+  "verifiedBy": ["node tools/project_check.js"],
+  "postFlightStatus": "pass",
+  "prevVersion": "v3.3.22",
+  "notes": "归档本身是在 create_archive.js 升级 post-flight 之前生成的，manifest.json 与新 MANIFEST.md 为修改后回填。"
+}

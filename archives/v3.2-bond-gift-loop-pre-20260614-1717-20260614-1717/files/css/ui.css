@@ -1,0 +1,814 @@
+/* ═══════════════════════════════════════════════════════
+   WITCH SHOP GAME - UI Component Styles (Supplement)
+   Only styles NOT already defined in style.css live here.
+   Avoids duplicate class definitions that cause conflicts.
+═══════════════════════════════════════════════════════ */
+
+/* ─── STATS PANEL GRID ─── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.stat-item {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* stat-label and stat-value are in style.css */
+
+/* ─── SHOP CARD (used by shop.js) ─── */
+.shop-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-mid);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  transition: border-color 0.15s;
+}
+
+.shop-card:hover {
+  border-color: var(--accent-violet);
+}
+
+.shop-card.purchased {
+  opacity: 0.6;
+  border-color: var(--accent-green);
+}
+
+.shop-card-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+}
+
+.shop-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.shop-card-name {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.shop-card-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+.shop-card-right {
+  flex-shrink: 0;
+}
+
+.shop-buy-btn {
+  background: var(--accent-purple);
+  color: #fff;
+  border: 1px solid var(--accent-violet);
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.shop-buy-btn:hover {
+  background: var(--accent-violet);
+}
+
+.shop-buy-btn.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: var(--bg-light);
+  border-color: var(--border-color);
+}
+
+.shop-purchased-badge {
+  font-size: 0.78rem;
+  color: var(--accent-green);
+}
+
+.shop-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 20px;
+  font-size: 0.85rem;
+}
+
+/* ─── BOND SHOP ─── */
+.bond-shop-intro {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  background: rgba(157, 78, 221, 0.08);
+  border: 1px solid rgba(157, 78, 221, 0.22);
+  border-radius: 6px;
+}
+
+.shop-investment-intro strong {
+  color: var(--accent-gold);
+}
+
+.shop-investment-intro span {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--accent-violet);
+}
+
+.bond-role-card {
+  background: var(--bg-mid);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.bond-role-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.bond-role-title {
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 0.88rem;
+}
+
+.bond-role-title span,
+.bond-progress-text {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: normal;
+}
+
+.bond-role-level {
+  color: var(--accent-pink);
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+.bond-progress {
+  height: 6px;
+  overflow: hidden;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  margin-bottom: 4px;
+}
+
+.bond-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+}
+
+.bond-gift-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.bond-gift-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.76rem;
+}
+
+.bond-gift-btn:hover {
+  border-color: var(--accent-violet);
+}
+
+.bond-gift-btn small {
+  color: var(--accent-gold);
+  white-space: nowrap;
+}
+
+.bond-gift-btn.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ─── STORY ENTRY extra styles ─── */
+/* Base .story-entry styles are in style.css.
+   These add animation and inner spacing. */
+.story-entry {
+  animation: entry-slide-in 0.4s ease-out;
+  transition: background 0.3s ease, border-left-color 0.3s ease;
+}
+
+@keyframes entry-slide-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Highlight effect for newly unlocked story */
+.story-entry.story-new-highlight {
+  background: rgba(124, 58, 237, 0.15);
+  border-left-color: var(--accent-pink);
+  animation: story-pulse 1s ease-in-out 2;
+}
+
+@keyframes story-pulse {
+  0%, 100% { 
+    background: rgba(124, 58, 237, 0.15);
+    box-shadow: 0 0 0 rgba(199, 125, 255, 0);
+  }
+  50% { 
+    background: rgba(157, 78, 221, 0.25);
+    box-shadow: 0 0 20px rgba(199, 125, 255, 0.4);
+  }
+}
+
+.story-entry-text p {
+  margin: 0 0 8px;
+}
+
+.story-entry-text p:last-child {
+  margin-bottom: 0;
+}
+
+.story-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 30px 20px;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* ─── TOAST - show/hide via .show class ─── */
+/* Override the animation-based approach in style.css with
+   a transition-based one that ui.js's .show class can control */
+.toast {
+  opacity: 0;
+  transform: translateX(40px);
+  /* remove the keyframe animation from style.css */
+  animation: none;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Colour overrides for toast types */
+.toast-info    { background: var(--bg-mid);  color: var(--accent-gold);  border-left-color: var(--accent-purple); }
+.toast-success { background: var(--bg-mid);  color: var(--accent-green); border-left-color: var(--accent-green); }
+.toast-error   { background: var(--bg-mid);  color: var(--accent-red);   border-left-color: var(--accent-red); }
+.toast-story   { background: var(--bg-mid);  color: var(--accent-pink);  border-left-color: var(--accent-pink); }
+.toast-gold    { background: var(--bg-mid);  color: var(--accent-gold);  border-left-color: var(--accent-gold); }
+
+/* ─── PHASE OVERLAY - show/hide transition ─── */
+/* ui.js adds/removes .show and .hidden.
+   We override the fixed 'animation' in style.css with a transition. */
+#phase-overlay {
+  /* Remove the always-playing animation from style.css */
+  animation: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  /* Keep it hidden by default via style.css .hidden class */
+}
+
+#phase-overlay.show {
+  opacity: 1;
+}
+
+/* ─── KEYBOARD VISUAL ─── */
+#keyboard-visual {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#kz-sequence-display {
+  justify-content: center;
+}
+
+#kz-feedback {
+  text-align: center;
+}
+
+.kb-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  background: var(--bg-mid);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-family: 'Courier New', monospace;
+  padding: 0 6px;
+  transition: all 0.1s;
+  margin: 2px;
+}
+
+.kb-key.hit {
+  background: var(--accent-purple);
+  color: #fff;
+  border-color: var(--accent-violet);
+  transform: scale(0.92);
+}
+
+.kb-key.miss {
+  background: rgba(248,113,113,0.2);
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+/* ─── RECIPE CARD extra styles (used by modules.js) ─── */
+/* Base .recipe-card layout is in style.css.
+   These add rounded corners and transition styles ui.css needs. */
+.recipe-card {
+  border-radius: 6px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.recipe-card:hover:not(.locked) {
+  background: var(--bg-light);
+}
+
+.recipe-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.recipe-locked-name {
+  color: var(--text-muted);
+}
+
+.recipe-keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-bottom: 3px;
+}
+
+.recipe-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+/* ─── ORDER CARDS extra (orders-empty already in style.css) ─── */
+.orders-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 20px;
+  font-size: 0.85rem;
+}
+
+/* ─── 敲击进度条（订单卡片内）─── */
+.order-hit-progress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+}
+
+.hit-progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--bg-dark);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.hit-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-violet));
+  border-radius: 3px;
+  transition: width 0.15s ease;
+}
+
+.hit-progress-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-width: 50px;
+  text-align: right;
+}
+
+/* 活跃订单卡片高亮 */
+.order-card.active-order {
+  border-color: var(--accent-violet);
+  box-shadow: 0 0 8px rgba(124, 58, 237, 0.35);
+}
+
+/* ─── 键盘区敲击计数显示 ─── */
+.kz-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.kz-count-done {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--accent-violet);
+}
+
+.kz-count-sep,
+.kz-count-unit {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.kz-count-total {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+}
+
+.kz-remaining {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+/* ─── WORD SPELLING DISPLAY (键盘区大字母) ─── */
+.kz-word-display {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 8px 0 4px;
+}
+
+.kz-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 40px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  border-radius: 6px;
+  border: 2px solid var(--border-color);
+  transform-origin: center bottom;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+.kz-letter-glyph {
+  display: inline-block;
+  line-height: 1;
+  transform-origin: center 75%;
+}
+
+/* 已正确输入的字母 — 绿色 */
+.kz-letter.kz-done {
+  background: #14532d;
+  border-color: #4ade80;
+  color: #4ade80;
+}
+
+.kz-letter.kz-pop {
+  animation: kz-letter-jump 2.4s cubic-bezier(0.2, 0.7, 0.25, 1) both;
+}
+
+/* 当前待输入的字母 — 高亮闪烁 */
+.kz-letter.kz-current {
+  background: #3b1f6e;
+  border-color: var(--accent-violet);
+  color: #e0c3ff;
+  animation: kz-blink 0.7s ease-in-out infinite alternate;
+}
+
+/* 尚未轮到的字母 — 暗色 */
+.kz-letter.kz-pending {
+  background: var(--bg-dark);
+  border-color: var(--border-color);
+  color: var(--text-muted);
+}
+
+@keyframes kz-blink {
+  from { box-shadow: 0 0 0px var(--accent-violet); }
+  to   { box-shadow: 0 0 10px var(--accent-violet); }
+}
+
+@keyframes kz-letter-jump {
+  0%   { transform: translateY(0); }
+  45%  { transform: translateY(-24px); }
+  100% { transform: translateY(0); }
+}
+
+/* ─── 中文释义 ─── */
+.kz-meaning {
+  font-size: 1.64rem;
+  color: #a78bfa;
+  text-align: center;
+  margin-top: 4px;
+  letter-spacing: 0.03em;
+}
+
+/* ─── ORDER CARD 单词行 ─── */
+.order-word-row {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.word-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 24px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  transform-origin: center bottom;
+}
+
+.word-letter-glyph {
+  display: inline-block;
+  line-height: 1;
+  transform-origin: center 75%;
+}
+
+.word-letter.letter-done {
+  background: #14532d;
+  border-color: #4ade80;
+  color: #4ade80;
+}
+
+.word-letter.letter-pop {
+  animation: none;
+}
+
+.word-letter.letter-current {
+  background: #3b1f6e;
+  border-color: var(--accent-violet);
+  color: #e0c3ff;
+  animation: kz-blink 0.7s ease-in-out infinite alternate;
+}
+
+.word-letter.letter-pending {
+  background: var(--bg-dark);
+  border-color: var(--border-color);
+  color: var(--text-muted);
+}
+
+/* ─── ORDER CARD 释义 ─── */
+.order-meaning {
+  font-size: 0.75rem;
+  color: #a78bfa;
+  margin-top: 2px;
+}
+
+/* ─── SHAKE ANIMATION (输错时) ─── */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* ─── BOND VISIT SHOP ─── */
+.bond-visit-layout {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.85fr) minmax(320px, 1.15fr);
+  gap: 12px;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.bond-shop-intro {
+  flex-shrink: 0;
+}
+
+.bond-character-grid {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  height: 100%;
+  max-height: none;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 2px;
+}
+
+.bond-character-chip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 9px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: rgba(28, 20, 46, 0.82);
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: left;
+}
+
+.bond-character-chip.active {
+  border-color: var(--accent-pink);
+  box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.2), 0 0 14px rgba(167, 139, 250, 0.18);
+  background: linear-gradient(135deg, rgba(88, 28, 135, 0.62), rgba(30, 41, 59, 0.86));
+}
+
+.bond-chip-emoji,
+.bond-selected-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 1.35rem;
+}
+
+.bond-chip-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bond-chip-main small,
+.bond-selected-subtitle,
+.gift-main em {
+  color: var(--text-muted);
+  font-style: normal;
+  font-size: 0.74rem;
+}
+
+.bond-chip-story {
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: rgba(167, 139, 250, 0.18);
+  color: var(--accent-violet);
+  font-size: 0.72rem;
+}
+
+.bond-chip-story.done {
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.14);
+}
+
+.bond-selected-panel {
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 14px;
+  background: linear-gradient(180deg, rgba(39, 28, 62, 0.92), rgba(19, 14, 32, 0.95));
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.bond-selected-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.bond-selected-name {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.bond-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.bond-stats-row span,
+.bond-story-target {
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: rgba(15, 23, 42, 0.42);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.bond-story-target {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  line-height: 1.45;
+}
+
+.bond-story-target.ready {
+  border-color: rgba(74, 222, 128, 0.46);
+  color: #bbf7d0;
+  background: rgba(22, 101, 52, 0.2);
+}
+
+.bond-gift-recommendations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 9px;
+}
+
+.bond-gift-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 92px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: rgba(30, 24, 48, 0.9);
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: left;
+}
+
+.bond-gift-btn:hover:not(.disabled) {
+  transform: translateY(-1px);
+  border-color: var(--accent-violet);
+}
+
+.bond-gift-btn.disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.gift-main {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bond-gift-btn small {
+  color: var(--accent-gold);
+}
+
+.gift-desc {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.bond-gift-favorite { border-color: rgba(244, 114, 182, 0.65); }
+.bond-gift-liked { border-color: rgba(167, 139, 250, 0.55); }
+.gift-rarity-epic { box-shadow: inset 0 0 18px rgba(250, 204, 21, 0.08); }
+
+@media (max-width: 860px) {
+  .bond-visit-layout {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .bond-character-grid {
+    height: auto;
+    max-height: min(260px, 38vh);
+  }
+
+  .bond-selected-panel {
+    min-height: 0;
+    overflow: visible;
+  }
+}

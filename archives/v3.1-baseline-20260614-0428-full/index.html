@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>魔女小店 · Witch's Brew</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pixels.css">
+  <link rel="stylesheet" href="css/ui.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     SCREEN: NAME INPUT (first launch)
+═══════════════════════════════════════ -->
+<div id="screen-name" class="screen active">
+  <div class="name-box pixel-panel">
+    <div class="witch-logo">🧙‍♀️</div>
+    <h1 class="game-title">魔女小店</h1>
+    <p class="game-subtitle">Witch's Brew &amp; Beyond</p>
+    <div class="name-input-area">
+      <label>为你的魔女起个名字吧</label>
+      <input type="text" id="witch-name-input" maxlength="12" placeholder="例如：艾露娜" autocomplete="off">
+      <button id="btn-start-game" class="pixel-btn btn-primary">开始经营 ✨</button>
+    </div>
+    <p class="flavor-text">「每一杯魔药，都藏着一个故事……」</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SCREEN: MAIN GAME
+═══════════════════════════════════════ -->
+<div id="screen-game" class="screen hidden" style="flex-direction:column;">
+
+  <!-- ── TOP HUD ── -->
+  <div id="hud">
+    <div class="hud-left">
+      <span id="hud-witch-name" class="hud-witch-name">魔女</span>
+      <span id="hud-phase" class="hud-phase">阶段 0</span>
+    </div>
+    <div class="hud-center">
+      <span id="hud-coins" class="hud-coins">🪙 0</span>
+      <span id="hud-earned" class="hud-earned">总收入 🪙0</span>
+    </div>
+    <div class="hud-right">
+      <nav class="panel-nav">
+        <button class="pixel-btn btn-nav active" data-panel="modules">🧪 配方</button>
+        <button class="pixel-btn btn-nav" data-panel="shop">🏪 商店</button>
+        <button class="pixel-btn btn-nav" data-panel="story">📖 故事</button>
+        <button class="pixel-btn btn-nav" data-panel="stats">📊 统计</button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Phase progress bar -->
+  <div id="phase-progress-track">
+    <div id="phase-progress"></div>
+  </div>
+
+  <!-- ── MAIN LAYOUT ── -->
+  <div id="game-layout">
+
+    <!-- LEFT: ROOM + ORDERS + KEYBOARD -->
+    <div id="left-column">
+
+      <!-- Room canvas -->
+      <div id="room-area">
+        <canvas id="room-canvas" width="480" height="320"></canvas>
+        <div id="room-overlay">
+          <div id="customer-area"></div>
+          <div id="witch-area">
+            <div id="witch-sprite" class="witch-idle"></div>
+            <div id="witch-label" class="witch-name-tag"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order queue -->
+      <div id="orders-section">
+        <h3 class="section-title">📋 当前订单</h3>
+        <div id="orders-container">
+          <div class="orders-empty">🌙 等待顾客……</div>
+        </div>
+      </div>
+
+      <!-- Keyboard prompt -->
+      <div id="keyboard-zone">
+        <div id="kz-title">⌨️ 等待任务...</div>
+        <div id="kz-sequence-display"></div>
+        <div id="kz-progress-bar"><div id="kz-progress-fill"></div></div>
+        <div id="kz-feedback"></div>
+        <div id="keyboard-visual"></div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: SIDE PANELS -->
+    <div id="right-column">
+
+      <!-- MODULES PANEL -->
+      <div id="panel-modules" class="side-panel">
+        <div id="module-tabs">
+          <button class="tab-btn active" data-module="potions">🧪 魔药</button>
+          <button class="tab-btn" id="tab-divination" data-module="divination">🔮 占卜</button>
+          <button class="tab-btn" id="tab-charms" data-module="charms">✨ 符咒</button>
+          <button class="tab-btn" id="tab-alchemy" data-module="alchemy">⚗️ 炼金</button>
+        </div>
+        <div id="module-content">
+          <div id="module-potions" class="module-panel active">
+            <div id="potion-recipes" class="recipe-grid"></div>
+          </div>
+          <div id="module-divination" class="module-panel">
+            <div id="divination-services" class="recipe-grid"></div>
+          </div>
+          <div id="module-charms" class="module-panel">
+            <div id="charm-services" class="recipe-grid"></div>
+          </div>
+          <div id="module-alchemy" class="module-panel">
+            <div id="alchemy-services" class="recipe-grid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHOP PANEL -->
+      <div id="panel-shop" class="side-panel hidden">
+        <h3 class="panel-title">🏪 魔法商店</h3>
+        <div id="shop-tabs">
+          <button class="shop-tab active" data-shop="unlock">解锁品类</button>
+          <button class="shop-tab" data-shop="upgrades">升级</button>
+          <button class="shop-tab" data-shop="bond">羁绊</button>
+        </div>
+        <div id="shop-content"></div>
+      </div>
+
+      <!-- STORY PANEL -->
+      <div id="panel-story" class="side-panel hidden">
+        <h3 class="panel-title">📖 故事档案</h3>
+        <div id="story-list"></div>
+      </div>
+
+      <!-- STATS PANEL -->
+      <div id="panel-stats" class="side-panel hidden">
+        <!-- Filled dynamically by UI._renderStats() -->
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════
+     PHASE-UP OVERLAY
+═══════════════════════════════════════ -->
+<div id="phase-overlay" class="hidden">
+  <div class="phase-overlay-inner">
+    <div class="phase-star">🌟</div>
+    <div class="phase-message">新阶段解锁！</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     TOAST CONTAINER
+═══════════════════════════════════════ -->
+<div id="toast-container"></div>
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS (order matters!)
+═══════════════════════════════════════ -->
+<script src="js/wordbank.js"></script>
+<script src="js/data.js"></script>
+<script src="js/state.js"></script>
+<script src="js/renderer.js"></script>
+<script src="js/keyboard.js"></script>
+<script src="js/customers.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/modules.js"></script>
+<script src="js/shop.js"></script>
+<script src="js/story.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
