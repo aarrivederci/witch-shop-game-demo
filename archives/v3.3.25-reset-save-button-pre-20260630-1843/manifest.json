@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "archiveName": "v3.3.25-reset-save-button-pre-20260630-1843",
+  "archiveType": "light",
+  "createdAt": "2026-06-30T10:43:37.362Z",
+  "createdBy": "tools/create_archive.js",
+  "files": [
+    "witch-shop-game/js/ui.js",
+    "witch-shop-game/css/ui.css",
+    "witch-shop-game/CHANGELOG.md",
+    "witch-shop-game/docs/STATUS.json",
+    "witch-shop-game/START_HERE.md",
+    "witch-shop-game/AI_HANDOFF.md"
+  ],
+  "goal": null,
+  "verifiedBy": [
+    "node tools/project_check.js"
+  ],
+  "postFlightStatus": "pass",
+  "prevVersion": null,
+  "notes": null
+}

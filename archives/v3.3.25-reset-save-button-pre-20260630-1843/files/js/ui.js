@@ -199,22 +199,13 @@ const UI = (() => {
         <div class="stat-item"><span class="stat-label">炼金次数</span><span class="stat-value">${s.alchemyDone}</span></div>
         <div class="stat-item"><span class="stat-label">总收入</span><span class="stat-value">🪙${State.totalEarned}</span></div>
       </div>
-      <div class="settings-section">
+      <div class="settings-section" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(157, 78, 221, 0.3);">
         <h3 class="panel-title">⚙️ 设置</h3>
-        <div class="setting-item">
-          <div class="setting-copy">
-            <span class="setting-label">单词显示格式</span>
-            <span class="setting-desc">切换订单与键盘区的英文单词大小写。</span>
-          </div>
-          <button id="btn-toggle-word-format" class="pixel-btn setting-action">${formatText}</button>
+        <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(157, 78, 221, 0.1); border-radius: 8px; margin-top: 10px;">
+          <span class="setting-label" style="color: #c77dff;">单词显示格式</span>
+          <button id="btn-toggle-word-format" class="pixel-btn" style="min-width: 120px;">${formatText}</button>
         </div>
-        <div class="setting-item setting-danger">
-          <div class="setting-copy">
-            <span class="setting-label">重新开始</span>
-            <span class="setting-desc">清除这个浏览器里的当前存档，回到起名页。</span>
-          </div>
-          <button id="btn-reset-save" class="pixel-btn setting-action btn-danger">清除存档</button>
-        </div>
+        <p style="font-size: 12px; color: #9d4edd; margin-top: 8px; opacity: 0.8;">点击按钮切换单词的显示格式（输入时大小写均可识别）</p>
       </div>
     `;
 
@@ -228,16 +219,6 @@ const UI = (() => {
         const activeOrder = Orders.getActiveOrder();
         updateKeyboardZone(activeOrder); // 更新键盘区域
         showToast(`单词显示格式已切换为：${State.settings.wordDisplayFormat === 'uppercase' ? '全大写' : '首字母大写'}`, 'success');
-      });
-    }
-
-    const resetBtn = document.getElementById('btn-reset-save');
-    if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
-        const ok = confirm('要清除这个浏览器里的当前存档并重新开始吗？这个操作不会影响 GitHub 上的游戏文件。');
-        if (!ok) return;
-        resetState();
-        window.location.reload();
       });
     }
   }

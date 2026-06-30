@@ -4,12 +4,6 @@
 
 ## Unreleased
 
-- v3.3.25 公开试玩清档入口：在统计页设置区新增“重新开始 / 清除存档”按钮，方便试玩者回到起名页。
-  - `js/ui.js` 的统计页设置区域新增清档操作，点击后先二次确认，再调用 `resetState()` 并刷新页面。
-  - `css/ui.css` 新增设置项与危险按钮样式，和现有像素面板风格保持一致。
-  - 不修改 `localStorage` 存档 key，不新增存档字段；仍使用 `witchShopSave_v1`。
-  - 修改前归档：`archives/v3.3.25-reset-save-button-pre-20260630-1843/`。
-
 - v3.3.24 Git 准备整理：把工作区整理为适合上传 GitHub 私有仓库的外层结构。
   - 新增根目录 `README.md`，说明项目入口、目录结构、本地检查、本地运行和远程上传步骤。
   - 新增 `.gitignore` 与 `.gitattributes`：排除本地缓存、依赖、日志、临时文件和环境文件；保留 `archives/` 与 `witch-shop-game/archives/` 作为可追踪协作上下文。

@@ -1,12 +1,11 @@
 {
   "$schema": "./STATUS.schema.json",
   "schemaVersion": 1,
-  "currentVersion": "v3.3.25",
+  "currentVersion": "v3.3.24",
   "currentPhase": "v3.0 大版本规划下的 v3.3 故事条件网络、特殊委托与半隐藏预告校准阶段",
   "lastReleasedVersion": "v3.3.23",
-  "latestArchive": "v3.3.25-reset-save-button-pre-20260630-1843",
+  "latestArchive": "v3.3.24-git-ready-pre-20260630-1725",
   "unreleasedHighlights": [
-    "v3.3.25 公开试玩清档入口：统计页设置区新增重新开始按钮，可清除当前浏览器存档并回到起名页。",
     "v3.3.24 Git 准备整理：新增根目录 README、.gitignore、.gitattributes，并初始化本地 Git 仓库。",
     "v3.3.23 多模型协作框架整治：清理根目录历史脚本、引入 STATUS.json 单一真相、归档自动触发检查、新增 agent 角色与结构化 backlog 文档。"
   ],

@@ -47,7 +47,7 @@ docs/VERSION_ARCHIVE.md
 v3.1 基线整理与协作文档已完成
 v3.1-automation 自动归档与检查已完成
 v3.2 商品赠礼与特殊 NPC 关系循环已完成最小闭环
-当前处于 v3.3：故事条件网络、特殊委托与半隐藏预告；代码与 CHANGELOG 已推进到 v3.3.25，已完成 Git 准备整理与公开试玩清档入口（统计页设置区“重新开始”按钮），尚未接入正式特殊委托任务系统
+当前处于 v3.3：故事条件网络、特殊委托与半隐藏预告；代码与 CHANGELOG 已推进到 v3.3.24，已完成 Git 准备整理（根目录 README、.gitignore、.gitattributes、本地 Git 初始化），尚未接入正式特殊委托任务系统
 ```
 
 机读真相：`docs/STATUS.json`（`currentVersion / openTracks / latestArchive`）。
