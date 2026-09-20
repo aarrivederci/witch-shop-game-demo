@@ -4,7 +4,7 @@
 ═══════════════════════════════════════════════════════ */
 
 /* --- FONTS & ROOT VARIABLES --- */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+SC:wght@400;700&display=swap');
+/* Local system fonts: no external font request. */
 
 :root {
   --bg-deep:        #1a0e2e;

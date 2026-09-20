@@ -105,7 +105,8 @@ const Game = (() => {
     }
 
     // 8. 本地 QA / 调试辅助：仅挂到控制台，不新增正式 UI
-    _installDebugTools();
+    RoomScene.ready();
+    Layout.ready();
 
     console.log('%c🧙 Witch Shop Game ready! ' + State.witchName, 'color:#c77dff;font-size:14px;');
   }
@@ -306,6 +307,7 @@ const Game = (() => {
 
   /* ─── ORDER COMPLETE ─── */
   function _onOrderComplete(order) {
+    UI.showToast(`完成 ${order.recipe.name} · +${order.reward} 金币`, 'success');
     UI.flashOrderResult(order, true);
     UI.refreshHeader();
     UI.renderOrders();

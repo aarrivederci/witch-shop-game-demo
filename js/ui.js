@@ -42,6 +42,7 @@ const UI = (() => {
     if (panel === 'shop')    Shop.render();
     if (panel === 'story')   Story.render();
     if (panel === 'stats')   _renderStats();
+    Layout.open(panel);
   }
 
   /* ─── REFRESH HEADER ─── */
@@ -263,8 +264,8 @@ const UI = (() => {
     const content = document.getElementById('product-unlock-content');
     if (!modal || !content || !recipe) return;
 
-    const fallbackCost = recipe.giftFallbackCost || Math.max(1, Math.ceil((recipe.price || 0) / 3));
-    const moduleLabel = _getProductModuleLabel(recipe.sourceModule);
+    const fallbackCost = _getProductGiftCost(recipe);
+    const moduleLabel = _getProductModuleLabel(recipe.sourceModule || _getProductSourceModule(recipe));
     const giftableHtml = recipe.giftable
       ? `
         <div class="product-unlock-samples">
@@ -312,6 +313,26 @@ const UI = (() => {
   function _getProductModuleLabel(moduleName) {
     const labels = { potions: '魔药', divination: '占卜', charms: '符咒', alchemy: '炼金' };
     return labels[moduleName] || '魔法商品';
+  }
+
+  function _getProductGiftCost(recipe) {
+    if (typeof Shop !== 'undefined' && typeof Shop.getProductGiftCost === 'function') {
+      return Shop.getProductGiftCost(recipe);
+    }
+    if (typeof recipe.giftCost === 'number') return recipe.giftCost;
+    return Math.max(10, Math.round((recipe.price || 20) * 0.6));
+  }
+
+  function _getProductSourceModule(recipe) {
+    if (!recipe || !recipe.id) return null;
+    const groups = [
+      { module: 'potions', items: typeof POTIONS !== 'undefined' ? POTIONS : [] },
+      { module: 'divination', items: typeof DIVINATIONS !== 'undefined' ? DIVINATIONS : [] },
+      { module: 'charms', items: typeof CHARMS !== 'undefined' ? CHARMS : [] },
+      { module: 'alchemy', items: typeof ALCHEMY !== 'undefined' ? ALCHEMY : [] },
+    ];
+    const found = groups.find(group => (group.items || []).some(item => item && item.id === recipe.id));
+    return found ? found.module : null;
   }
 
   /* ─── FLASH ORDER RESULT ─── */

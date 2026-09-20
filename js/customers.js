@@ -68,6 +68,7 @@ const Customers = (() => {
 
   /* ─── TRY SPAWN ─── */
   function _trySpawn() {
+    if (RoomScene.isPaused()) return;
     if (Orders.isFull()) return;
 
     const customer = _pickCustomer();

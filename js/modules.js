@@ -116,7 +116,7 @@ const Modules = (() => {
       tooltip.textContent = `花费 🪙${learnCost} 解锁配方`;
       card.appendChild(tooltip);
       card.title = `花费 ${learnCost} 金币解锁`;
-      card.addEventListener('click', () => _tryUnlockRecipe(recipe, learnCost));
+      card.addEventListener('click', () => _tryUnlockRecipe(recipe, learnCost, mod));
     }
 
     return card;
@@ -132,7 +132,7 @@ const Modules = (() => {
   }
 
   /* ─── UNLOCK RECIPE ─── */
-  function _tryUnlockRecipe(recipe, cost) {
+  function _tryUnlockRecipe(recipe, cost, moduleName) {
     if (isRecipeUnlocked(recipe.id)) return;
     if (!spendCoins(cost)) {
       UI.showToast('金币不足！', 'error');
@@ -140,7 +140,9 @@ const Modules = (() => {
     }
     unlockRecipe(recipe.id);
     const sampleCount = _grantUnlockSamples(recipe);
-    UI.showProductUnlockCard(recipe, sampleCount);
+    UI.showProductUnlockCard(Object.assign({}, recipe, {
+      sourceModule: recipe.sourceModule || moduleName,
+    }), sampleCount);
     render();
     UI.refreshHeader();
   }

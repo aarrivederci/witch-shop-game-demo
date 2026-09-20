@@ -13,6 +13,7 @@
 ═══════════════════════════════════════════════════════ */
 
 const Orders = (() => {
+  let _paused = true;
   let _orders = [];
   let _activeOrderId = null;
   let _onComplete = null;
@@ -99,6 +100,7 @@ const Orders = (() => {
      返回 'hit' | 'miss' | 'none'
   ─────────────────────────────────────────────────────── */
   function processKey(key) {
+    if (_paused) return 'none';
     const normalizedKey = (key || '').toLowerCase();
     const order = _pickOrderForKey(normalizedKey);
     const activeOrder = getActiveOrder();
@@ -150,6 +152,7 @@ const Orders = (() => {
 
   /* ─── TICK (timer) ─── */
   function _tick() {
+    if (_paused) return;
     const expired = [];
     for (let i = 0; i < _orders.length; i++) {
       const o = _orders[i];
@@ -218,5 +221,5 @@ const Orders = (() => {
   }
 
   /* ─── PUBLIC ─── */
-  return { init, stop, addOrder, isFull, getOrders, getActiveOrder, processKey };
+  return { setPaused(value) { _paused = !!value; }, init, stop, addOrder, isFull, getOrders, getActiveOrder, processKey };
 })();

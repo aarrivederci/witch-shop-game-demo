@@ -32,8 +32,9 @@ const Keyboard = (() => {
     const key = e.key.toLowerCase();
     if (_onKeyCallback) _onKeyCallback(key);
     bumpStat('totalKeyPresses');
+    saveState();
   }
 
   /* ─── PUBLIC ─── */
-  return { init, enable, disable };
+  return { init, enable, disable, input(key) { if (!_enabled || !/^[a-z]$/i.test(key)) return; if (_onKeyCallback) _onKeyCallback(key.toLowerCase()); bumpStat('totalKeyPresses'); saveState(); } };
 })();

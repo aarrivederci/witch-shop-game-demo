@@ -1,0 +1,55 @@
+/* Final layout overrides: no document-level scrolling during play. */
+html,body{height:100%;overflow:hidden}
+#screen-game{height:var(--app-height,100dvh);min-height:0;overflow:hidden}
+#hud{flex:0 0 auto;min-height:58px;padding:10px 22px;flex-wrap:nowrap}
+#hud .hud-right{width:auto}#hud-earned{display:none}
+#phase-progress-track{flex:0 0 2px}
+#game-layout{flex:1;min-height:0;height:0;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(340px,1fr);grid-template-rows:minmax(0,1fr);gap:22px;padding:18px 24px;align-items:stretch;overflow:hidden;max-width:1800px;margin:0 auto}
+#left-column{display:block;width:auto;min-height:0;overflow:hidden}
+#scene-stage{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-height:0}
+.room-frame{min-width:0;min-height:0;display:grid;place-items:center;overflow:hidden}
+#scene-viewport{margin:0;max-height:none;max-width:100%;flex:none;aspect-ratio:836/760}
+.scene-heading{padding:0;gap:8px}.scene-heading h2{font-size:23px;margin:5px 0 0}
+.scene-footer{margin:0;min-height:38px;flex-wrap:nowrap;font-size:11px}.scene-footer #scene-hint{min-width:0}
+#scene-stage .scene-footer button{font-size:11px;padding:6px;white-space:nowrap}
+#work-desk{position:relative;min-width:0;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:12px;padding:18px;background:linear-gradient(155deg,#211b27,#16131b);border:1px solid #4c3c4d;border-radius:12px;box-shadow:0 10px 40px #0004}
+.desk-heading{border-bottom:1px solid #493b45;padding-bottom:12px}.desk-heading h2{font:22px 'SimSun',serif;letter-spacing:3px;color:#dfc69f;margin:5px 0}.desk-heading p{font-size:12px;color:#a99aaf;margin:0}
+#work-upper{position:relative;min-height:0;min-width:0;display:flex;flex-direction:column;gap:12px;isolation:isolate}
+#service-bar{flex:0 0 auto;margin:0;min-height:42px;padding:8px 10px;gap:8px}
+#service-toggle,#panel-close{border:1px solid #927251;border-radius:5px;background:#382a33;color:#ead4ab;padding:7px 10px;font-size:12px;white-space:nowrap}
+#orders-section{flex:1;min-height:0;max-height:none;height:auto;overflow:auto;padding:10px;background:#17131c}
+#orders-container{min-height:0;max-height:none;overflow:visible;display:flex;flex-direction:column;gap:8px}
+.order-card{padding:10px;min-width:0}.order-words-container{display:none}.order-info{min-width:0}.order-customer-dialogue{white-space:normal;overflow-wrap:anywhere}
+#keyboard-zone{height:auto;min-height:0;max-height:48%;overflow:auto;margin:0;padding:12px;text-align:left;background:#241d2b;border:1px solid #816585;border-radius:8px;box-shadow:inset 0 1px #b6958826}
+#kz-title{font-size:12px;margin:0 0 6px}#kz-sequence-display{min-height:0;font-size:20px;overflow-wrap:anywhere}
+.kz-word-display{justify-content:flex-start;gap:3px;margin:4px 0}.kz-letter{width:23px;height:29px;font-size:20px}.kz-meaning{font-size:12px;text-align:left}.kz-hint{font-size:12px;line-height:1.5}
+#kz-feedback{font-size:11px;min-height:0;margin:4px 0}#kz-progress-bar{margin:6px 0;height:3px}
+#touch-typing{margin-top:6px;padding:8px 10px;min-height:34px;font-size:16px}#typing-status{font-size:11px;margin-top:5px;line-height:1.4}
+#right-column{position:absolute;inset:0;top:0;width:100%;height:100%;max-height:none;display:flex;flex-direction:column;overflow:hidden;border:1px solid #8a6b86;border-radius:8px;background:#211b28;z-index:3;box-shadow:0 8px 24px #0006}
+#right-column[hidden]{display:none!important}.panel-open>#service-bar,.panel-open>#orders-section{visibility:hidden}
+.panel-heading{position:static;flex:0 0 auto;gap:8px;padding:12px;font-size:17px}.reading-note{display:none}#panel-close{margin-left:auto}
+#right-column .side-panel{flex:1;min-width:0;min-height:0;padding:12px;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;line-height:1.65}
+#right-column .panel-title{font-size:15px;margin:0 0 10px}#module-tabs,#shop-tabs{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:10px;flex-shrink:0}.tab-btn,.shop-tab{padding:6px 8px;font-size:12px}
+#right-column .recipe-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}#right-column .recipe-card{display:flex;flex-direction:row;align-items:center;padding:10px;gap:10px;text-align:left;min-width:0}#right-column .recipe-icon{font-size:24px;margin:0}.recipe-info{min-width:0}.recipe-name{font-size:14px}.recipe-desc{font-size:12px}.recipe-keys{flex-wrap:wrap}.recipe-unlock-hint{font-size:11px;max-width:80px}.recipe-price{white-space:nowrap}
+.story-tab-bar{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto;max-width:100%;gap:6px;padding-bottom:8px}.story-tab{flex:0 0 auto;min-width:74px;font-size:12px}.story-tab-content{min-width:0;overflow:visible}.story-entry,.story-text{line-height:1.85;overflow-wrap:anywhere}
+.bond-visit-layout{display:flex;flex-direction:column;overflow:visible;min-height:0}.bond-character-grid{display:flex;flex-direction:row;overflow-x:auto;height:auto;max-height:none;flex:none}.bond-character-chip{flex:0 0 145px}.bond-selected-panel{min-width:0;min-height:0;overflow:visible}.bond-selected-header{flex-wrap:wrap}
+#shop-content{min-height:0;overflow:visible}.shop-item{min-width:0}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+#product-unlock-modal{position:absolute;inset:0;padding:10px;z-index:5}.product-unlock-card{max-height:100%;overflow:auto;padding:18px}.product-unlock-card[aria-modal]{isolation:isolate}
+@media(max-width:1050px){#game-layout{gap:12px;padding:12px;grid-template-columns:minmax(0,1.2fr) minmax(310px,1fr)}#work-desk{padding:12px;gap:10px}.scene-heading h2{font-size:20px}.eyebrow{font-size:8px;letter-spacing:1px}.scene-footer{flex-wrap:wrap;gap:4px}.scene-footer #scene-hint{flex-basis:100%}#hud{padding:8px 12px;gap:10px}#hud .btn-nav{padding:7px 9px}}
+@media(max-width:760px) and (orientation:portrait){#hud{min-height:68px;flex-wrap:wrap;gap:4px 12px;padding:6px 10px}#hud .hud-right{width:100%}.panel-nav{width:100%;display:flex}.panel-nav button{flex:1}#hud .btn-nav{padding:5px 8px}#game-layout{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,.9fr) minmax(0,1.1fr);gap:7px;padding:7px}#work-desk{padding:8px;gap:6px;grid-template-rows:minmax(0,1fr) auto}.desk-heading{display:none}.scene-heading h2{font-size:16px;margin:0}.scene-heading .eyebrow{display:none}.scene-footer{min-height:0;flex-wrap:nowrap}.scene-footer #scene-hint{flex-basis:auto;font-size:10px;line-height:1.3}#scene-stage button:not(.room-hotspot){padding:4px 6px;font-size:10px}#keyboard-zone{padding:8px;max-height:none}#typing-status{display:none}#service-bar{min-height:32px;padding:4px 8px;font-size:11px}#orders-section{padding:6px}.section-title{margin-bottom:5px}.panel-heading{padding:7px 10px;font-size:15px}#right-column .side-panel{padding:8px}#work-upper{gap:5px}}
+@media(max-height:650px) and (orientation:landscape){#hud{min-height:42px;padding:5px 12px}#game-layout{padding:7px 12px;gap:12px;grid-template-columns:minmax(0,1.3fr) minmax(300px,1fr)}#work-desk{padding:8px;gap:6px;grid-template-rows:minmax(0,1fr) auto}.desk-heading{display:none}.scene-heading h2{font-size:18px}.scene-heading .eyebrow{display:none}.scene-footer{min-height:0;flex-wrap:nowrap}.scene-footer #scene-hint{flex-basis:auto}#keyboard-zone{padding:8px;max-height:none}#typing-status{display:none}#service-bar{min-height:32px;padding:4px 7px}#service-toggle{padding:4px 8px}#orders-section{padding:6px}#work-upper{gap:6px}.panel-heading{padding:7px 10px}}
+#keyboard-zone{max-height:none;overflow:visible}
+
+#keyboard-zone{gap:3px;display:block}#kz-sequence-display{display:block}#story-list{overflow:visible;flex:none}.story-tab-content{padding:10px 0;overflow:visible;flex:none}
+
+.order-name{font-size:14px;line-height:1.4}.order-customer{font-size:12px;line-height:1.6}.order-brief{min-width:0}.order-progress{font-size:11px}.order-special-tag{font-size:10px}.order-icon{font-size:20px}#orders-container .order-card{min-height:0;gap:8px}.order-info{overflow-wrap:anywhere}
+
+#panel-story>.panel-title,#panel-shop>.panel-title{display:none}
+.story-tab{flex-direction:row;align-items:center;padding:6px 8px;gap:4px;min-width:0;white-space:nowrap}.story-tab-emoji{font-size:14px}.story-tab-name{font-size:12px}.story-tab small{margin:0;font-size:10px}.story-tab-bar{padding:0 0 6px}.story-role-header{font-size:15px}.story-role-emoji{font-size:16px}.story-role-title{font-size:12px}
+#module-content,#shop-content{padding:0;overflow:visible;flex:none}#shop-content.shop-content-bond{overflow:visible;display:block}.bond-character-grid{max-height:none;overflow-y:hidden;padding-bottom:6px}.shop-item-desc{font-size:12px;line-height:1.65}
+@media(max-height:600px) and (orientation:portrait){#game-layout{grid-template-rows:minmax(0,.65fr) minmax(0,1.35fr)}.scene-footer{display:none}#keyboard-zone{padding:6px}#kz-feedback,#kz-progress-bar{display:none}#kz-title{font-size:11px;margin-bottom:3px}.kz-letter{height:23px;width:19px;font-size:17px}.kz-word-display{margin:2px 0}#touch-typing{padding:5px 8px;margin-top:3px;min-height:30px;height:32px}.panel-heading{padding:4px 8px}#panel-close{padding:4px 7px}}
+
+#kz-sequence-display{max-height:80px;overflow-y:auto}#shop-tabs .shop-tab{flex:0 0 auto;white-space:nowrap;padding:5px 8px}#shop-tabs{gap:3px}
+.bond-character-chip{flex:0 0 auto;width:auto;display:flex;padding:6px;gap:5px}.bond-chip-main{white-space:nowrap;font-size:12px}.bond-chip-emoji{width:23px;height:23px;font-size:16px}.bond-chip-main small{font-size:10px}.bond-chip-story{font-size:10px;padding:2px 4px}.bond-selected-panel{padding:10px}.bond-selected-header{grid-template-columns:auto minmax(0,1fr);gap:6px}.bond-shop-intro{font-size:12px;line-height:1.6}
+
+#interaction-exit[hidden]{display:none!important}#interaction-exit{border-color:#ac8e66!important;color:#efd5a2!important}.scene-footer{flex-wrap:wrap}

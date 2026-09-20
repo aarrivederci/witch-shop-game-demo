@@ -156,7 +156,7 @@ const Shop = (() => {
       .sort((a, b) => {
         const sampleDiff = getProductSampleCount(b.id) - getProductSampleCount(a.id);
         if (sampleDiff !== 0) return sampleDiff;
-        return _getProductGiftCost(a) - _getProductGiftCost(b);
+        return getProductGiftCost(a) - getProductGiftCost(b);
       })
       .forEach(product => grid.appendChild(_buildInventoryCard(product)));
     container.appendChild(grid);
@@ -164,7 +164,7 @@ const Shop = (() => {
 
   function _buildInventoryCard(product) {
     const sampleCount = getProductSampleCount(product.id);
-    const fallbackCost = _getProductGiftCost(product);
+    const fallbackCost = getProductGiftCost(product);
     const card = document.createElement('div');
     card.className = `inventory-card ${sampleCount > 0 ? 'has-sample' : 'empty-sample'}`;
     card.innerHTML = `
@@ -356,7 +356,7 @@ const Shop = (() => {
 
   function _buildProductGiftButton(role, product) {
     const btn = document.createElement('button');
-    const cost = _getProductGiftCost(product);
+    const cost = getProductGiftCost(product);
     const sampleCount = getProductSampleCount(product.id);
     const hasSample = sampleCount > 0;
     const canAfford = State.coins >= cost;
@@ -381,7 +381,7 @@ const Shop = (() => {
   function _buyProductGift(role, product) {
     const roleGridScrollTop = _getBondRoleGridScrollTop();
     const before = getBondLevel(role.id);
-    const cost = _getProductGiftCost(product);
+    const cost = getProductGiftCost(product);
     const usedSample = getProductSampleCount(product.id) > 0;
     if (usedSample) {
       useProductSample(product.id, 1);
@@ -428,12 +428,12 @@ const Shop = (() => {
         if (affordDiff !== 0) return affordDiff;
         const sampleDiff = getProductSampleCount(b.id) - getProductSampleCount(a.id);
         if (sampleDiff !== 0) return sampleDiff;
-        return _getProductGiftCost(a) - _getProductGiftCost(b);
+        return getProductGiftCost(a) - getProductGiftCost(b);
       });
   }
 
   function _canGiveProductGift(product) {
-    return getProductSampleCount(product.id) > 0 || State.coins >= _getProductGiftCost(product);
+    return getProductSampleCount(product.id) > 0 || State.coins >= getProductGiftCost(product);
   }
 
   function _getGiftableProducts() {
@@ -461,7 +461,7 @@ const Shop = (() => {
     return Math.max(1, Math.round((product.giftBaseExp || 1) * pref.multiplier * repeatMultiplier));
   }
 
-  function _getProductGiftCost(product) {
+  function getProductGiftCost(product) {
     if (typeof product.giftCost === 'number') return product.giftCost;
     return Math.max(10, Math.round((product.price || 20) * 0.6));
   }
@@ -986,5 +986,5 @@ const Shop = (() => {
   }
 
   /* ─── PUBLIC ─── */
-  return { render };
+  return { render, getProductGiftCost };
 })();

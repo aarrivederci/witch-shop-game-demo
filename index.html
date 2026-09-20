@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>魔女小店 · Witch's Brew</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/pixels.css">
-  <link rel="stylesheet" href="css/ui.css?v=3.3.25">
+  <title>魔女小店 v4.0.0 · Witch's Brew</title>
+  <link rel="stylesheet" href="css/style.css?v=4.0.0">
+  <link rel="stylesheet" href="css/pixels.css?v=4.0.0">
+  <link rel="stylesheet" href="css/ui.css?v=4.0.0">
+<link rel="stylesheet" href="scene.css?v=4.0.0">
+<link rel="stylesheet" href="layout.css?v=4.0.0">
 </head>
 <body>
 
@@ -17,11 +19,11 @@
   <div class="name-box pixel-panel">
     <div class="witch-logo">🧙‍♀️</div>
     <h1 class="game-title">魔女小店</h1>
-    <p class="game-subtitle">Witch's Brew &amp; Beyond</p>
+    <p class="game-subtitle">月下的小店 · 房间的魔法日常</p>
     <div class="name-input-area">
       <label>为你的魔女起个名字吧</label>
       <input type="text" id="witch-name-input" maxlength="12" placeholder="例如：艾露娜" autocomplete="off">
-      <button id="btn-start-game" class="pixel-btn btn-primary">开始经营 ✨</button>
+      <button id="btn-start-game" class="pixel-btn btn-primary">走进小店</button>
     </div>
     <p class="flavor-text">「每一杯魔药，都藏着一个故事……」</p>
   </div>
@@ -34,6 +36,7 @@
 
   <!-- ── TOP HUD ── -->
   <div id="hud">
+    <span class="release-version" style="font-size:11px;color:#cdbb9a">v4.0.0</span>
     <div class="hud-left">
       <span id="hud-witch-name" class="hud-witch-name">魔女</span>
       <span id="hud-phase" class="hud-phase">阶段 0</span>
@@ -64,7 +67,12 @@
     <div id="left-column">
 
       <!-- Room canvas -->
-      <div id="room-area">
+      <section id="scene-stage" aria-label="女巫房间">
+  <div class="scene-heading"><div><span class="eyebrow">WITCH'S LITTLE WORLD</span><h2 id="room-title">经营空间</h2></div><button id="door-shortcut">前往休息室 ↗</button></div>
+  <div id="scene-viewport"><canvas id="scene-canvas" width="836" height="760" aria-label="点击地板走动，点击家具交互"></canvas><div id="scene-hotspots"></div></div>
+  <div class="scene-footer"><span id="scene-hint" role="status">点击地板走动，靠近家具打开功能</span><button id="interaction-exit" hidden>起身离开</button><button id="walk-tour">看一段走动</button><button id="hotspot-toggle" aria-pressed="true">显示入口</button></div>
+  <div id="service-bar"><span id="service-status">休业 · 订单已暂停</span><button id="service-toggle">去柜台营业</button></div>
+</section><div id="room-area">
         <canvas id="room-canvas" width="480" height="320"></canvas>
         <div id="room-overlay">
           <div id="customer-area"></div>
@@ -89,13 +97,13 @@
         <div id="kz-sequence-display"></div>
         <div id="kz-progress-bar"><div id="kz-progress-fill"></div></div>
         <div id="kz-feedback"></div>
-        <div id="keyboard-visual"></div>
+        <div id="keyboard-visual"></div><input id="touch-typing" aria-label="打字输入" placeholder="点此输入英文（也可直接使用键盘）" autocomplete="off" autocapitalize="off" spellcheck="false"><div id="typing-status">到柜台开启营业后，按提示拼写单词。</div>
       </div>
 
     </div>
 
     <!-- RIGHT: SIDE PANELS -->
-    <div id="right-column">
+    <div id="right-column"><div class="panel-heading"><span id="station-title">配方手册</span><span class="reading-note">阅读时暂停接单</span></div>
 
       <!-- MODULES PANEL -->
       <div id="panel-modules" class="side-panel">
@@ -178,17 +186,21 @@
 <!-- ═══════════════════════════════════════
      SCRIPTS (order matters!)
 ═══════════════════════════════════════ -->
-<script src="js/wordbank.js"></script>
-<script src="js/data.js"></script>
-<script src="js/state.js"></script>
-<script src="js/renderer.js"></script>
-<script src="js/keyboard.js"></script>
-<script src="js/customers.js"></script>
-<script src="js/orders.js"></script>
-<script src="js/modules.js"></script>
-<script src="js/shop.js"></script>
-<script src="js/story.js"></script>
-<script src="js/ui.js?v=3.3.25"></script>
-<script src="js/game.js"></script>
+<script src="js/wordbank.js?v=4.0.0"></script>
+<script src="js/data.js?v=4.0.0"></script>
+<script src="js/state.js?v=4.0.0"></script>
+<script src="navigation.js?v=4.0.0"></script>
+<script src="layers.js?v=4.0.0"></script>
+<script src="interactions.js?v=4.0.0"></script>
+<script src="visuals.js?v=4.0.0"></script><script src="portal.js?v=4.0.0"></script><script src="scene.js?v=4.0.0"></script>
+<script src="js/keyboard.js?v=4.0.0"></script>
+<script src="js/customers.js?v=4.0.0"></script>
+<script src="js/orders.js?v=4.0.0"></script>
+<script src="js/modules.js?v=4.0.0"></script>
+<script src="js/shop.js?v=4.0.0"></script>
+<script src="js/story.js?v=4.0.0"></script>
+<script src="js/ui.js?v=4.0.0"></script>
+<script src="layout.js?v=4.0.0"></script>
+<script src="js/game.js?v=4.0.0"></script>
 </body>
 </html>
