@@ -17,7 +17,8 @@ const RoomScene = (() => {
       blocks:[[[130,440],[268,414],[273,518],[169,538]],[[300,418],[457,352],[558,400],[451,521]],[[548,520],[617,494],[696,517],[704,555],[668,590],[621,605],[550,569]],[[547,425],[630,441],[627,479],[608,486],[545,460]]],
       foreground:[{line:[169,534,271,516],poly:[[132,408],[248,382],[281,416],[272,520],[166,538]]},{line:[300,483,450,520],poly:[[300,416],[362,365],[422,311],[529,344],[556,410],[451,522],[300,481]]},{line:[552,579,653,611],poly:[[552,513],[609,442],[651,433],[694,455],[690,550],[718,562],[709,608],[639,627],[560,587]]}],
       spots:[
-        {id:'door',name:'↙ 回到小店',at:[80,390],foot:[110,547],door:'shop'},        {id:'journal',name:'日记 · 成就',at:[226,414],foot:[238,549],panel:'stats',records:true},
+        {id:'door',name:'↙ 回到小店',at:[80,390],foot:[110,547],door:'shop'},        {id:'music',name:'漂浮音乐盒',at:[231,351],foot:[282,540],panel:'music'},
+        {id:'journal',name:'日记 · 成就',at:[226,414],foot:[238,549],panel:'stats',records:true},
         {id:'tea',name:'沙发 · 茶歇阅读',at:[618,510],foot:[562,584],text:'茶壶轻轻倾斜，杯沿升起一缕热气。这里可以停一会儿，再回小店。'},
         {id:'window',name:'窗沿 · 望月',at:[717,400],foot:[724,518],text:'坐到窗沿，看一会儿月亮。'},
         {id:'bed',name:'床 · 床沿小憩',at:[437,434],foot:[444,536],text:'月光落在被角上。今晚的小店，也有了新的故事。'}]}
@@ -61,7 +62,7 @@ const RoomScene = (() => {
     if(s.shop){State.activeShopTab=s.shop;Shop.render();}
     if(s.id==='pot')interaction.start('pot',t,pos);
     if(s.records)document.querySelector('[data-stats-view="achievements"]')?.click();
-    
+
   }
   function walkRoute(start,end){
     const nav=rooms[room].nav;
@@ -179,8 +180,9 @@ const RoomScene = (() => {
     if(image.complete&&image.naturalWidth&&architecture.complete&&architecture.naturalWidth){
       ctx.imageSmoothingEnabled=true;ctx.drawImage(architecture,current.offset,0,836,760,0,0,836,760);if(room==='rest')RoomVisuals.window(ctx,image,actionState?.kind==='window'?actionState.windowOpen:0,night,actionState?.kind==='window'&&actionState.seat>0?'back':'all');atmosphere(current);
       const ordered=RoomLayers[room].map(layer=>({layer,depth:actionState?.kind==='tea'&&layer.id==='chair-front'?594:RoomVisuals.depth(layer,pos[0])}));
+      if(room==='rest')ordered.push({depth:538,music:true});
       if(readyFlag)ordered.push({depth:actionState?.kind==='tea'?592:actionState?.kind==='bed'?550:actionState?.kind==='window'?510:pos[1],person:true});if(actionState?.kind==='window'&&actionState.seat>0)ordered.push({depth:511,windowFront:true});ordered.sort((a,b)=>a.depth-b.depth);
-      for(const item of ordered){if(item.person)actor();else if(item.windowFront)RoomVisuals.window(ctx,image,actionState.windowOpen,night,'front');else drawLayer(item.layer,current);}drawInteraction();magic();
+      for(const item of ordered){if(item.music)MusicBox.draw(ctx,t,reducedMotion);else if(item.person)actor();else if(item.windowFront)RoomVisuals.window(ctx,image,actionState.windowOpen,night,'front');else drawLayer(item.layer,current);}drawInteraction();magic();
     }
     if(path.length){const p=path[path.length-1];ctx.strokeStyle='#e3c88799';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(...p,10,4,0,0,Math.PI*2);ctx.stroke();}
     if(now-lastFeedback<700){ctx.fillStyle='#ebd395';ctx.font='17px serif';ctx.fillText('✦',pos[0]+22,pos[1]-70-(now-lastFeedback)/55);}

@@ -1,0 +1,19 @@
+#panel-music { padding: 16px; color: #ddc9b5; }
+#panel-music .music-title { color:#ead19b; font-size:20px; margin:0 0 8px; }
+#panel-music p {line-height:1.6; margin:8px 0 14px;}
+#panel-music label {display:block; margin:14px 0 6px;}
+#panel-music select {width:100%; background:#241c2c; color:#f1dfc2; padding:10px; border:1px solid #806982; border-radius:5px;}
+.music-buttons {display:flex; gap:8px; flex-wrap:wrap; margin:12px 0;}
+.music-buttons button,.music-import {background:#382a40; border:1px solid #9c805d; border-radius:5px; padding:9px 12px; color:#efddbd; cursor:pointer;}
+.music-buttons button:disabled {opacity:.4; cursor:default;}
+#music-volume {width:100%;accent-color:#d4b27c;}
+#music-status {min-height:1.6em;color:#d6bdeb;}
+#panel-music .music-note {font-size:12px;color:#b6a7bb;}
+#music-files {max-width:100%;font:inherit;font-size:12px;}
+#panel-music :focus-visible {outline:2px solid #efc779;outline-offset:3px;}
+#right-column #panel-music {display:block;font-size:13px;}
+#right-column #panel-music.hidden {display:none;}
+#panel-music p {margin:4px 0 8px;}
+#panel-music label {margin:8px 0 4px;}
+#panel-music .music-buttons {margin:8px 0;}
+#panel-music button[hidden] {display:none;}

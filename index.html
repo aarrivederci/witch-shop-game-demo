@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>魔女小店 v4.0.0 · Witch's Brew</title>
-  <link rel="stylesheet" href="css/style.css?v=4.0.0">
-  <link rel="stylesheet" href="css/pixels.css?v=4.0.0">
-  <link rel="stylesheet" href="css/ui.css?v=4.0.0">
-<link rel="stylesheet" href="scene.css?v=4.0.0">
-<link rel="stylesheet" href="layout.css?v=4.0.0">
+  <title>魔女小店 v4.0.1 · Witch's Brew</title>
+  <link rel="stylesheet" href="css/style.css?v=4.0.1">
+  <link rel="stylesheet" href="css/pixels.css?v=4.0.1">
+  <link rel="stylesheet" href="css/ui.css?v=4.0.1">
+<link rel="stylesheet" href="scene.css?v=4.0.1">
+<link rel="stylesheet" href="layout.css?v=4.0.1">
+<link rel="stylesheet" href="music.css?v=4.0.1">
 </head>
 <body>
 
@@ -36,7 +37,7 @@
 
   <!-- ── TOP HUD ── -->
   <div id="hud">
-    <span class="release-version" style="font-size:11px;color:#cdbb9a">v4.0.0</span>
+    <span class="release-version" style="font-size:11px;color:#cdbb9a">v4.0.1</span>
     <div class="hud-left">
       <span id="hud-witch-name" class="hud-witch-name">魔女</span>
       <span id="hud-phase" class="hud-phase">阶段 0</span>
@@ -51,6 +52,7 @@
         <button class="pixel-btn btn-nav" data-panel="shop">🏪 商店</button>
         <button class="pixel-btn btn-nav" data-panel="story">📖 故事</button>
         <button class="pixel-btn btn-nav" data-panel="stats">📊 统计</button>
+<button id="music-quick" class="pixel-btn btn-nav" data-panel="music">♪ 音乐</button>
       </nav>
     </div>
   </div>
@@ -148,7 +150,17 @@
         <div id="story-list"></div>
       </div>
 
-      <!-- STATS PANEL -->
+      <section id="panel-music" class="side-panel hidden" aria-label="漂浮音乐盒">
+<p class="music-note">让一缕旋律，陪着小店的日常。</p>
+<strong id="music-now"></strong><p id="music-status" role="status" aria-live="polite"></p>
+<div class="music-buttons"><button id="music-toggle" aria-pressed="false">开启音乐</button><button id="music-resume">开始播放</button></div>
+<label for="music-tracks">曲目</label><select id="music-tracks"></select>
+<div class="music-buttons"><button id="music-prev">上一首</button><button id="music-next">下一首</button></div>
+<label for="music-volume">音量 <output id="music-volume-value">35%</output></label><input id="music-volume" type="range" min="0" max="1" step="0.01">
+<label for="music-files">添加自己的音乐</label><input id="music-files" type="file" accept="audio/*,.mp3,.ogg,.wav,.m4a,.aac,.flac" multiple>
+<p class="music-note">内置一首曲目，循环播放。添加其他音频后可切换；本地曲目仅本次打开有效，不会上传。切换房间不断曲，离开页面暂歇。</p>
+</section>
+<!-- STATS PANEL -->
       <div id="panel-stats" class="side-panel hidden">
         <!-- Filled dynamically by UI._renderStats() -->
       </div>
@@ -186,21 +198,22 @@
 <!-- ═══════════════════════════════════════
      SCRIPTS (order matters!)
 ═══════════════════════════════════════ -->
-<script src="js/wordbank.js?v=4.0.0"></script>
-<script src="js/data.js?v=4.0.0"></script>
-<script src="js/state.js?v=4.0.0"></script>
-<script src="navigation.js?v=4.0.0"></script>
-<script src="layers.js?v=4.0.0"></script>
-<script src="interactions.js?v=4.0.0"></script>
-<script src="visuals.js?v=4.0.0"></script><script src="portal.js?v=4.0.0"></script><script src="scene.js?v=4.0.0"></script>
-<script src="js/keyboard.js?v=4.0.0"></script>
-<script src="js/customers.js?v=4.0.0"></script>
-<script src="js/orders.js?v=4.0.0"></script>
-<script src="js/modules.js?v=4.0.0"></script>
-<script src="js/shop.js?v=4.0.0"></script>
-<script src="js/story.js?v=4.0.0"></script>
-<script src="js/ui.js?v=4.0.0"></script>
-<script src="layout.js?v=4.0.0"></script>
-<script src="js/game.js?v=4.0.0"></script>
+<script src="js/wordbank.js?v=4.0.1"></script>
+<script src="js/data.js?v=4.0.1"></script>
+<script src="js/state.js?v=4.0.1"></script>
+<script src="music.js?v=4.0.1"></script>
+<script src="navigation.js?v=4.0.1"></script>
+<script src="layers.js?v=4.0.1"></script>
+<script src="interactions.js?v=4.0.1"></script>
+<script src="visuals.js?v=4.0.1"></script><script src="portal.js?v=4.0.1"></script><script src="scene.js?v=4.0.1"></script>
+<script src="js/keyboard.js?v=4.0.1"></script>
+<script src="js/customers.js?v=4.0.1"></script>
+<script src="js/orders.js?v=4.0.1"></script>
+<script src="js/modules.js?v=4.0.1"></script>
+<script src="js/shop.js?v=4.0.1"></script>
+<script src="js/story.js?v=4.0.1"></script>
+<script src="js/ui.js?v=4.0.1"></script>
+<script src="layout.js?v=4.0.1"></script>
+<script src="js/game.js?v=4.0.1"></script>
 </body>
 </html>

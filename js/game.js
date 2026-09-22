@@ -12,6 +12,7 @@ const Game = (() => {
 
   /* ─── DOM READY ENTRY POINT ─── */
   async function init() {
+    MusicBox.init();
     if (typeof WordBank !== 'undefined' && WordBank.waitForLoad) {
       await WordBank.waitForLoad();
     }

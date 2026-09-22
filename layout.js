@@ -13,7 +13,7 @@ const Layout = (() => {
     if (el('right-column').hidden) previousFocus = document.activeElement;
     RoomScene.pause();
     el('scene-hint').textContent='正在阅读 · 订单已暂停；关闭页面后可回柜台继续。';
-    el('station-title').textContent = {modules:'配方手册',shop:'小店事务',story:'故事档案',stats:'成长记录'}[panel];
+    el('station-title').textContent = {modules:'配方手册',shop:'小店事务',story:'故事档案',stats:'成长记录',music:'漂浮音乐盒'}[panel];
     el('right-column').hidden = false;
     el('work-upper').classList.add('panel-open');
     document.querySelectorAll('[data-panel]').forEach(b => b.setAttribute('aria-expanded', String(b.dataset.panel === panel)));
