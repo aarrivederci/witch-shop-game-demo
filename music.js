@@ -2,6 +2,8 @@
 const MusicBox = (() => {
   const key = 'witchShopMusic_v1';
   const tracks = [{id:'sunlight',title:'Sunlight on the Kettle',src:'assets/music/sunlight-on-the-kettle.mp3'}];
+  const boxArt = new Image();
+  boxArt.src = 'assets/music-box-tilted.png';
   let audio, index=0, enabled=false, volume=.35, message='', request=0;
   const el=id=>document.getElementById(id);
   function save(){try{localStorage.setItem(key,JSON.stringify({enabled,volume,track:tracks[index].id}));}catch{}}
@@ -48,21 +50,39 @@ const MusicBox = (() => {
     document.addEventListener('keydown',()=>{if(enabled&&audio.paused)play();},{once:true});
     update();
   }
-  // Small code-native pixel prop: brass music box, floating crystal and musical sparks.
+  // The box moves independently of its stable desk shadow. The source crop omits
+  // the concept sheet's baked shadow, leaving the approved box art untouched.
   function draw(ctx,time,reduced){
-    const bob=reduced?0:Math.sin(time/1100)*3;
-    ctx.save();ctx.translate(231,363+bob);ctx.lineJoin='miter';ctx.lineWidth=2;
-    ctx.fillStyle='#b191bf30';ctx.beginPath();ctx.ellipse(0,37-bob,23,6,0,0,Math.PI*2);ctx.fill();
-    const poly=(points,fill)=>{ctx.fillStyle=fill;ctx.strokeStyle='#3c263c';ctx.beginPath();points.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.fill();ctx.stroke();};
-    poly([[-23,6],[3,-4],[25,5],[0,16]],'#b7834d');
-    poly([[-23,6],[0,16],[0,31],[-23,20]],'#57334c');
-    poly([[0,16],[25,5],[25,19],[0,31]],'#382638');
-    ctx.strokeStyle='#e3b86e';ctx.beginPath();ctx.moveTo(-20,16);ctx.lineTo(-3,23);ctx.moveTo(4,23);ctx.lineTo(21,16);ctx.stroke();
-    ctx.save();ctx.shadowColor='#caa9ff';ctx.shadowBlur=enabled?12:3;
-    poly([[0,-27],[9,-13],[0,4],[-9,-13]],enabled?'#d4b9f0':'#856f9c');
-    poly([[0,-27],[9,-13],[0,4],[2,-12]],'#9673b8');ctx.restore();
-    ctx.strokeStyle='#dab879';ctx.beginPath();ctx.ellipse(0,-12,17,5,-.25,0,Math.PI*2);ctx.stroke();
-    if(enabled&&!audio?.paused){for(let i=0;i<3;i++){const drift=reduced?i*7:(time/90+i*12)%38;ctx.fillStyle='#f3dca2';ctx.fillRect(17+i*5,-18-drift,3,3);ctx.fillRect(19+i*5,-25-drift,2,8);}}
+    const playing=enabled&&!audio?.paused;
+    const bob=reduced?0:Math.sin(time/900)*1.5;
+    const pulse=reduced?0:Math.sin(time/650)*.04;
+    ctx.save();
+    ctx.fillStyle=`rgba(44,27,64,${.17+pulse})`;
+    ctx.beginPath();ctx.ellipse(255,378,16,3,0,0,Math.PI*2);ctx.fill();
+    if(boxArt.complete&&boxArt.naturalWidth){
+      ctx.imageSmoothingEnabled=true;
+      ctx.drawImage(boxArt,280,62,1050,820,231,332+bob,48,37);
+    }
+    if(playing){
+      const glow=reduced?.45:.38+.14*Math.sin(time/370);
+      ctx.strokeStyle=`rgba(186,130,235,${glow})`;
+      ctx.lineWidth=1.1;ctx.setLineDash([5,3]);
+      ctx.beginPath();ctx.ellipse(255,376,14,2,-.08,.1,Math.PI*1.2);ctx.stroke();ctx.setLineDash([]);
+      for(let i=0;i<3;i++){
+        const drift=reduced?0:(time/65+i*13)%18;
+        const x=235+i*16,y=341+(i%2)*10-drift;
+        ctx.fillStyle=`rgba(246,211,152,${reduced?.65:.45+.35*Math.sin(time/300+i)**2})`;
+        ctx.fillRect(x,y,2,2);
+      }
+    }
+    const note=(x,y,alpha)=>{
+      ctx.fillStyle=`rgba(238,202,139,${alpha})`;
+      ctx.fillRect(x,y+10,5,3);ctx.fillRect(x+4,y+1,2,11);
+      ctx.fillRect(x+6,y+1,5,2);ctx.fillRect(x+9,y+3,2,3);
+    };
+    const rise=playing&&!reduced?(time/95)%15:0;
+    note(248,315-rise,playing?.85:.36);
+    if(playing)note(268,307-(reduced?0:(time/115+7)%17),.65);
     ctx.restore();
   }
   return {init,draw};

@@ -17,7 +17,7 @@ const RoomScene = (() => {
       blocks:[[[130,440],[268,414],[273,518],[169,538]],[[300,418],[457,352],[558,400],[451,521]],[[548,520],[617,494],[696,517],[704,555],[668,590],[621,605],[550,569]],[[547,425],[630,441],[627,479],[608,486],[545,460]]],
       foreground:[{line:[169,534,271,516],poly:[[132,408],[248,382],[281,416],[272,520],[166,538]]},{line:[300,483,450,520],poly:[[300,416],[362,365],[422,311],[529,344],[556,410],[451,522],[300,481]]},{line:[552,579,653,611],poly:[[552,513],[609,442],[651,433],[694,455],[690,550],[718,562],[709,608],[639,627],[560,587]]}],
       spots:[
-        {id:'door',name:'↙ 回到小店',at:[80,390],foot:[110,547],door:'shop'},        {id:'music',name:'漂浮音乐盒',at:[231,351],foot:[282,540],panel:'music'},
+        {id:'door',name:'↙ 回到小店',at:[80,390],foot:[110,547],door:'shop'},        {id:'music',name:'漂浮音乐盒',at:[255,351],foot:[282,540],panel:'music'},
         {id:'journal',name:'日记 · 成就',at:[226,414],foot:[238,549],panel:'stats',records:true},
         {id:'tea',name:'沙发 · 茶歇阅读',at:[618,510],foot:[562,584],text:'茶壶轻轻倾斜，杯沿升起一缕热气。这里可以停一会儿，再回小店。'},
         {id:'window',name:'窗沿 · 望月',at:[717,400],foot:[724,518],text:'坐到窗沿，看一会儿月亮。'},
@@ -34,6 +34,7 @@ const RoomScene = (() => {
   const readingBook=new Image();readingBook.src='assets/reading-book-open.png';let readingBounds=null;
   readingBook.onload=()=>{const c=document.createElement('canvas');c.width=readingBook.width;c.height=readingBook.height;const g=c.getContext('2d',{willReadFrequently:true});g.drawImage(readingBook,0,0);const d=g.getImageData(0,0,c.width,c.height).data;let l=c.width,r=0,top=c.height,b=0;for(let y=0;y<c.height;y++)for(let x=0;x<c.width;x++)if(d[(y*c.width+x)*4+3]>128){l=Math.min(l,x);r=Math.max(r,x);top=Math.min(top,y);b=Math.max(b,y);}readingBounds=[l,top,r-l+1,b-top+1];};
   const image=new Image();image.src='assets/rooms-clean.png';
+  const bedsideClean=new Image();bedsideClean.onload=resetTextures;bedsideClean.src='assets/rooms-bedside-styled.png';
   const night=new Image();night.src='assets/window-night.png';
   const architecture=new Image();architecture.src='assets/architecture.png';
   const witch=new Image();witch.src='assets/witch-sheet.png';
@@ -110,7 +111,7 @@ const RoomScene = (() => {
     if(!layer.surface){
       const xs=layer.poly.map(p=>p[0]),ys=layer.poly.map(p=>p[1]);layer.x=Math.min(...xs);layer.y=Math.min(...ys);
       const surface=document.createElement('canvas');surface.width=Math.max(...xs)-layer.x+1;surface.height=Math.max(...ys)-layer.y+1;
-      const c=surface.getContext('2d',{willReadFrequently:true});c.translate(-layer.x,-layer.y);c.beginPath();layer.poly.forEach((p,i)=>i?c.lineTo(...p):c.moveTo(...p));c.closePath();for(const hole of layer.holes||[]){c.moveTo(...hole[0]);for(const p of hole.slice(1))c.lineTo(...p);c.closePath();}c.clip('evenodd');c.drawImage(image,current.offset,0,836,760,0,0,836,760);layer.surface=surface;
+      const c=surface.getContext('2d',{willReadFrequently:true});c.translate(-layer.x,-layer.y);c.beginPath();layer.poly.forEach((p,i)=>i?c.lineTo(...p):c.moveTo(...p));c.closePath();for(const hole of layer.holes||[]){c.moveTo(...hole[0]);for(const p of hole.slice(1))c.lineTo(...p);c.closePath();}c.clip('evenodd');const source=layer.id==='nightstand'&&room==='rest'&&bedsideClean.complete&&bedsideClean.naturalWidth?bedsideClean:image;c.drawImage(source,current.offset,0,836,760,0,0,836,760);layer.surface=surface;
     }
     const dy=layer.float&&!reducedMotion?Math.sin(t/900+(layer.phase||0))*layer.float:0;
     ctx.save();ctx.imageSmoothingEnabled=true;let dx=0,dyAction=0;if(actionState?.kind==='tea'){const shift=layer.id==='cup'?actionState.cupShift:layer.id==='teapot'?actionState.potShift:null;if(shift){[dx,dyAction]=shift;}}
@@ -180,7 +181,7 @@ const RoomScene = (() => {
     if(image.complete&&image.naturalWidth&&architecture.complete&&architecture.naturalWidth){
       ctx.imageSmoothingEnabled=true;ctx.drawImage(architecture,current.offset,0,836,760,0,0,836,760);if(room==='rest')RoomVisuals.window(ctx,image,actionState?.kind==='window'?actionState.windowOpen:0,night,actionState?.kind==='window'&&actionState.seat>0?'back':'all');atmosphere(current);
       const ordered=RoomLayers[room].map(layer=>({layer,depth:actionState?.kind==='tea'&&layer.id==='chair-front'?594:RoomVisuals.depth(layer,pos[0])}));
-      if(room==='rest')ordered.push({depth:538,music:true});
+      if(room==='rest')ordered.push({depth:480,music:true});
       if(readyFlag)ordered.push({depth:actionState?.kind==='tea'?592:actionState?.kind==='bed'?550:actionState?.kind==='window'?510:pos[1],person:true});if(actionState?.kind==='window'&&actionState.seat>0)ordered.push({depth:511,windowFront:true});ordered.sort((a,b)=>a.depth-b.depth);
       for(const item of ordered){if(item.music)MusicBox.draw(ctx,t,reducedMotion);else if(item.person)actor();else if(item.windowFront)RoomVisuals.window(ctx,image,actionState.windowOpen,night,'front');else drawLayer(item.layer,current);}drawInteraction();magic();
     }
