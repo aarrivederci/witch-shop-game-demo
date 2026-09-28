@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>魔女小店 v4.0.2 · Witch's Brew</title>
+  <title>魔女小店 v4.0.3 · Witch's Brew</title>
   <link rel="stylesheet" href="css/style.css?v=4.0.2">
   <link rel="stylesheet" href="css/pixels.css?v=4.0.2">
   <link rel="stylesheet" href="css/ui.css?v=4.0.2">
 <link rel="stylesheet" href="scene.css?v=4.0.2">
 <link rel="stylesheet" href="layout.css?v=4.0.2">
 <link rel="stylesheet" href="music.css?v=4.0.2">
+<link rel="stylesheet" href="dayparts.css?v=4.0.3-hitarea2">
 </head>
 <body>
 
@@ -37,7 +38,7 @@
 
   <!-- ── TOP HUD ── -->
   <div id="hud">
-    <span class="release-version" style="font-size:11px;color:#cdbb9a">v4.0.2</span>
+    <span class="release-version" style="font-size:11px;color:#cdbb9a">v4.0.3</span>
     <div class="hud-left">
       <span id="hud-witch-name" class="hud-witch-name">魔女</span>
       <span id="hud-phase" class="hud-phase">阶段 0</span>
@@ -106,6 +107,18 @@
 
     <!-- RIGHT: SIDE PANELS -->
     <div id="right-column"><div class="panel-heading"><span id="station-title">配方手册</span><span class="reading-note">阅读时暂停接单</span></div>
+
+      <section id="panel-daypart" class="side-panel hidden" aria-label="营业时刻牌">
+        <div class="daypart-panel-head"><span>THE HOURS OF THE SHOP</span><h3>营业时刻牌</h3><p>翻动门边的黑板，选择接下来迎接客人的时刻。</p></div>
+        <div class="daypart-options" role="group" aria-label="选择经营时段">
+          <button type="button" data-daypart="day" aria-pressed="false"><span>☀</span><strong>白天</strong><small>清朗的日常</small></button>
+          <button type="button" data-daypart="dusk" aria-pressed="false"><span>✧</span><strong>傍晚</strong><small>余晖与旅人</small></button>
+          <button type="button" data-daypart="night" aria-pressed="true"><span>☾</span><strong>夜晚</strong><small>月下的来客</small></button>
+        </div>
+        <p id="daypart-status" role="status" aria-live="polite">当前时段：夜晚</p>
+        <p class="daypart-rule">已有订单保留并暂停；切换完成后，新来的客人才按所选时段调整出现倾向。休息室维持月夜。</p>
+        <div class="daypart-visitors"><h4>更常遇见</h4><p id="daypart-visitors"></p></div>
+      </section>
 
       <!-- MODULES PANEL -->
       <div id="panel-modules" class="side-panel">
@@ -205,15 +218,15 @@
 <script src="navigation.js?v=4.0.2"></script>
 <script src="layers.js?v=4.0.2-desk"></script>
 <script src="interactions.js?v=4.0.2"></script>
-<script src="visuals.js?v=4.0.2"></script><script src="portal.js?v=4.0.2"></script><script src="scene.js?v=4.0.2-desk"></script>
+<script src="visuals.js?v=4.0.2"></script><script src="portal.js?v=4.0.2"></script><script src="dayparts.js?v=4.0.3"></script><script src="scene.js?v=4.0.3-hitarea"></script>
 <script src="js/keyboard.js?v=4.0.2"></script>
-<script src="js/customers.js?v=4.0.2"></script>
+<script src="js/customers.js?v=4.0.3"></script>
 <script src="js/orders.js?v=4.0.2"></script>
 <script src="js/modules.js?v=4.0.2"></script>
 <script src="js/shop.js?v=4.0.2"></script>
 <script src="js/story.js?v=4.0.2"></script>
 <script src="js/ui.js?v=4.0.2"></script>
-<script src="layout.js?v=4.0.2"></script>
+<script src="layout.js?v=4.0.3"></script>
 <script src="js/game.js?v=4.0.2"></script>
 </body>
 </html>

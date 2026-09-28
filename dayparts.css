@@ -1,0 +1,14 @@
+.release-version{white-space:nowrap}
+#panel-daypart{padding:18px 20px;color:#e8d9cd}
+.room-hotspot--hours{width:8.5%;height:14%;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.daypart-panel-head>span{font-size:10px;letter-spacing:.2em;color:#b99bab}
+.daypart-panel-head h3{font-family:serif;font-weight:500;font-size:26px;color:#f2dcc2;margin:8px 0}
+.daypart-panel-head p,.daypart-rule{font-size:13px;line-height:1.65;color:#c5b2bb}
+.daypart-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:18px 0 12px}
+.daypart-options button{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0;padding:14px 6px;border:1px solid #745a69;border-radius:8px;background:#2d2333;color:#f0e2d4;cursor:pointer}
+.daypart-options button:hover{border-color:#d1a983;background:#3b2c3d}
+.daypart-options button[aria-pressed=true]{border-color:#e4b58c;box-shadow:0 0 0 1px #8c6073,inset 0 0 20px #eeb17420;background:#51394d}
+.daypart-options button>span{font-size:24px;color:#f0c69a}.daypart-options strong{font-weight:500;font-size:16px}.daypart-options small{font-size:11px;color:#bba9b8}
+#daypart-status{font-size:13px;color:#f0c99d;margin:0 0 16px}.daypart-rule{border-top:1px solid #5b4556;padding-top:13px;margin:0 0 14px}
+.daypart-visitors{border:1px solid #554353;background:#251d2b;padding:12px 14px;border-radius:7px}.daypart-visitors h4{font-weight:500;color:#f0ddc9;font-size:13px;margin:0 0 5px}.daypart-visitors p{font-size:13px;line-height:1.5;margin:0;color:#c9b6c0}
+@media(max-width:650px){.daypart-options{gap:5px}.daypart-options button{padding:10px 3px}.daypart-options small{font-size:10px}}

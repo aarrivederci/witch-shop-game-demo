@@ -46,7 +46,7 @@ const Customers = (() => {
       _quickSpawnRequested = false;
       return QUICK_SPAWN_MS;
     }
-    
+
     const reduction = State.phase * 800;
     const base = Math.max(BASE_SPAWN_MS - reduction, 2000); // 最小间隔从3秒减到2秒
     return base * (0.6 + Math.random() * 0.5); // 范围从0.7-1.3改为0.6-1.1，更快
@@ -91,7 +91,7 @@ const Customers = (() => {
 
     if (State.upgrades.vip && Math.random() < 0.1) {
       const vip = eligible.filter(c => c.phase === State.phase);
-      if (vip.length) return _asGeneralCustomer(vip[Math.floor(Math.random() * vip.length)]);
+      if (vip.length) return _asGeneralCustomer(_weightedPick(vip));
     }
 
     // 20% 概率生成动态组合的NPC（身份+随机性格）
@@ -100,7 +100,17 @@ const Customers = (() => {
       if (dynamicCustomer) return dynamicCustomer;
     }
 
-    return _asGeneralCustomer(eligible[Math.floor(Math.random() * eligible.length)]);
+    return _asGeneralCustomer(_weightedPick(eligible));
+  }
+
+  function _weightedPick(pool) {
+    const total = pool.reduce((sum,customer) => sum + ShopHours.weightFor(customer), 0);
+    let roll = Math.random() * total;
+    for (const customer of pool) {
+      roll -= ShopHours.weightFor(customer);
+      if (roll < 0) return customer;
+    }
+    return pool[pool.length - 1];
   }
 
   function _tryPickSpecialCustomer(eligible) {
@@ -110,7 +120,7 @@ const Customers = (() => {
     const pool = eligible.filter(c => c.special || c.npcType === 'special');
     if (!pool.length) return null;
 
-    const baseCustomer = pool[Math.floor(Math.random() * pool.length)];
+    const baseCustomer = _weightedPick(pool);
     return _buildSpecialCustomerVisit(baseCustomer);
   }
 
@@ -172,7 +182,7 @@ const Customers = (() => {
   function _generateDynamicCustomer(eligibleCustomers) {
     // 从合格的NPC中随机选一个作为身份基础
     const baseCustomer = eligibleCustomers[Math.floor(Math.random() * eligibleCustomers.length)];
-    
+
     // 获取该NPC的身份信息
     const identityKey = baseCustomer.id;
     const identity = CUSTOMER_IDENTITIES[identityKey];
@@ -182,7 +192,7 @@ const Customers = (() => {
     const personalityKeys = Object.keys(PERSONALITY_TRAITS);
     const availablePersonalities = personalityKeys.filter(p => p !== baseCustomer.personality);
     if (!availablePersonalities.length) return null;
-    
+
     const newPersonality = availablePersonalities[Math.floor(Math.random() * availablePersonalities.length)];
     const personalityData = PERSONALITY_TRAITS[newPersonality];
 
@@ -215,7 +225,7 @@ const Customers = (() => {
   function _generateDialogueByPersonality(identity, personalityData) {
     const style = personalityData.dialogueStyle;
     const name = identity.name;
-    
+
     // 根据不同的性格风格生成不同台词
     const dialogueTemplates = {
       warm: [
